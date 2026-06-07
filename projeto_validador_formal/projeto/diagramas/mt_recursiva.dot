@@ -1,0 +1,53 @@
+// MT — w#w  (w ∈ {0,1}*)
+// Γ = {0, 1, #, X, Y, B}
+// Notação aresta: símbolo_lido / símbolo_escrito , direção
+
+digraph MT_wsharpw {
+    rankdir=LR;
+    node [shape=circle fontname="monospace" fontsize=10];
+    edge [fontname="monospace" fontsize=9];
+
+    inicio [shape=none label=""];
+    inicio -> q_inicio;
+
+    q_aceita  [shape=doublecircle];
+    q_rejeita [style=filled fillcolor=lightcoral];
+
+    // q_inicio → detecta # ou vai para busca
+    q_inicio    -> q_busca_hash   [label="0,1,X,Y / mesmo, N"];
+    q_inicio    -> q_verifica_dir [label="# / # , R"];
+    q_inicio    -> q_rejeita      [label="B / B , N"];
+
+    // q_busca_hash → marca dígito à esquerda
+    q_busca_hash -> q_leu_0_esq   [label="0 / X , R"];
+    q_busca_hash -> q_leu_1_esq   [label="1 / Y , R"];
+    q_busca_hash -> q_busca_hash  [label="X,Y / mesmo , R"];
+    q_busca_hash -> q_verifica_dir [label="# / # , R"];
+
+    // avança até # (leu 0)
+    q_leu_0_esq -> q_leu_0_esq  [label="0,1,X,Y / mesmo , R"];
+    q_leu_0_esq -> q_pula_dir_0 [label="# / # , R"];
+
+    // avança até # (leu 1)
+    q_leu_1_esq -> q_leu_1_esq  [label="0,1,X,Y / mesmo , R"];
+    q_leu_1_esq -> q_pula_dir_1 [label="# / # , R"];
+
+    // pula marcados na direita, verifica 0
+    q_pula_dir_0 -> q_pula_dir_0 [label="X,Y / mesmo , R"];
+    q_pula_dir_0 -> q_volta_inicio [label="0 / X , L"];
+    q_pula_dir_0 -> q_rejeita    [label="1,B / mesmo , N"];
+
+    // pula marcados na direita, verifica 1
+    q_pula_dir_1 -> q_pula_dir_1 [label="X,Y / mesmo , R"];
+    q_pula_dir_1 -> q_volta_inicio [label="1 / Y , L"];
+    q_pula_dir_1 -> q_rejeita    [label="0,B / mesmo , N"];
+
+    // volta ao início
+    q_volta_inicio -> q_volta_inicio [label="0,1,X,Y,# / mesmo , L"];
+    q_volta_inicio -> q_busca_hash   [label="B / B , R"];
+
+    // verifica se direita está toda marcada
+    q_verifica_dir -> q_verifica_dir [label="X,Y / mesmo , R"];
+    q_verifica_dir -> q_aceita       [label="B / B , N"];
+    q_verifica_dir -> q_rejeita      [label="0,1 / mesmo , N"];
+}

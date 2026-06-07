@@ -1,0 +1,8 @@
+# Testes — Linguagem Recursiva (w#w, w ∈ {0,1}*)
+# Formato: <cadeia>|<esperado>
+#|ACEITA
+0#0|ACEITA
+101#101|ACEITA
+01#10|REJEITA
+0#00|REJEITA
+1#0|REJEITA

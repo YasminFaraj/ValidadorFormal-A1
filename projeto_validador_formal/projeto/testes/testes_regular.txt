@@ -1,0 +1,8 @@
+# Testes — Linguagem Regular (CPF: ddd.ddd.ddd-dd)
+# Formato: <cadeia>|<esperado>   (esperado: ACEITA ou REJEITA)
+123.456.789-00|ACEITA
+000.000.000-00|ACEITA
+999.999.999-99|ACEITA
+12.34.56-78|REJEITA
+1234.456.789-00|REJEITA
+123.456.789-0|REJEITA

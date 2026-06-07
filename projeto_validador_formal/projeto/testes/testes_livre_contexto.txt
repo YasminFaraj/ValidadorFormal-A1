@@ -1,0 +1,8 @@
+# Testes — Linguagem Livre de Contexto (parênteses/colchetes/chaves balanceados)
+# Formato: <cadeia>|<esperado>
+((x+y)*z)|ACEITA
+{[a+b]}|ACEITA
+([]{})|ACEITA
+((a+b)|REJEITA
+([)]|REJEITA
+}abc|REJEITA

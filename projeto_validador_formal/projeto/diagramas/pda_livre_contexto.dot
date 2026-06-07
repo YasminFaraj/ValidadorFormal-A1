@@ -1,0 +1,21 @@
+// PDA — Balanceamento de parênteses, colchetes e chaves
+// Estratégia: empilha símbolo de abertura; ao encontrar fechamento,
+//             verifica e desempilha o topo; aceita se pilha = [Z0]
+
+digraph PDA_Balanceamento {
+    rankdir=LR;
+    node [shape=circle fontname="monospace" fontsize=11];
+    edge [fontname="monospace" fontsize=10];
+
+    inicio [shape=none label=""];
+    inicio -> q0;
+
+    q_aceita [shape=doublecircle];
+    q_rejeita [style=filled fillcolor=lightcoral];
+
+    q0 -> q0 [label="( / PUSH(\n[ / PUSH([\n{ / PUSH({"];
+    q0 -> q0 [label=") , topo=( / POP\n] , topo=[ / POP\n} , topo={ / POP"];
+    q0 -> q0 [label="neutro / skip"];
+    q0 -> q_aceita  [label="ε, pilha=[Z0]"];
+    q0 -> q_rejeita [label="), topo≠(\n], topo≠[\n}, topo≠{"];
+}
