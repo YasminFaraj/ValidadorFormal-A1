@@ -53,7 +53,7 @@ projeto/
 ├── diagramas/
 │   ├── dfa_regular.dot
 │   ├── pda_livre_contexto.dot
-│   └── mt_recursiva.dot
+└── └── mt_recursiva.dot
 
 ```
 
