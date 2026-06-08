@@ -17,9 +17,9 @@ import sys
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SRC_DIR)
 
-from regular       import reconhece_cpf
 from livre_contexto import reconhece_balanceado
-from recursiva     import reconhece_wsharpw
+from recursiva import reconhece_wsharpw
+from regular import reconhece_cpf
 
 BASE_DIR   = os.path.join(SRC_DIR, "..", "testes")
 SEPARADOR  = "|"
@@ -74,15 +74,15 @@ def rodar_bateria(nome: str, casos, reconhecedor, verbose_erros: bool = True):
 def rodar_verbose_passo_a_passo(nome: str, casos, reconhecedor):
     """Executa em modo verboso para uma cadeia aceita e uma rejeitada."""
     aceitas  = [(c, e) for c, e in casos if e == "ACEITA"]
-    rejeit   = [(c, e) for c, e in casos if e == "REJEITA"]
+    rejeitadas   = [(c, e) for c, e in casos if e == "REJEITA"]
 
     print(f"\n{'═'*70}")
     print(f"  EXECUÇÃO PASSO A PASSO — {nome}")
     print(f"{'═'*70}")
 
-    for c, _ in aceitas[:1]:
+    for c, _ in aceitas:
         reconhecedor(c, verbose=True)
-    for c, _ in rejeit[:1]:
+    for c, _ in rejeitadas:
         reconhecedor(c, verbose=True)
 
 
