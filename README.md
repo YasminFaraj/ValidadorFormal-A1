@@ -54,8 +54,7 @@ projeto/
 │   ├── dfa_regular.dot
 │   ├── pda_livre_contexto.dot
 │   └── mt_recursiva.dot
-└── relatorio/
-    └── relatorio.pdf
+
 ```
 
 ## Definição de "passo"
